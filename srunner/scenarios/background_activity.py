@@ -11,7 +11,7 @@ Scenario spawning elements to make the town dynamic and interesting
 import py_trees
 
 from srunner.scenariomanager.carla_data_provider import CarlaActorPool
-from srunner.scenariomanager.scenarioatomics.atomic_behaviors import TrafficJamChecker
+from srunner.scenariomanager.scenarioatomics.atomic_behaviors import TrafficJamChecker, Idle
 from srunner.scenarios.basic_scenario import BasicScenario
 
 
@@ -24,12 +24,13 @@ class BackgroundActivity(BasicScenario):
     This is a single ego vehicle scenario
     """
 
-    def __init__(self, world, ego_vehicles, config, randomize=False, debug_mode=False, timeout=35 * 60, criteria_enable=True, name=None):
+    def __init__(self, world, ego_vehicles, config, randomize=False, debug_mode=False, timeout=35 * 60, criteria_enable=True, name=None, check_traffic_jam=True):
         """
         Setup all relevant parameters and create scenario
         """
         self.config = config
         self.debug = debug_mode
+        self.check_traffic_jam = check_traffic_jam
 
         self.timeout = timeout  # Timeout of scenario in seconds
 
@@ -51,9 +52,7 @@ class BackgroundActivity(BasicScenario):
                                                                  random_location=actor.random_location)
             if new_actors is None:
                 raise Exception("Error: Unable to add actor {} at {}".format(actor.model, actor.transform))
-
-            for _actor in new_actors:
-                self.other_actors.append(_actor)
+        return new_actors
 
     def _create_behavior(self):
         """
@@ -62,8 +61,11 @@ class BackgroundActivity(BasicScenario):
 
         # Build behavior tree
         sequence = py_trees.composites.Sequence("BackgroundActivity")
-        check_jam = TrafficJamChecker(debug=self.debug)
-        sequence.add_child(check_jam)
+        if self.check_traffic_jam:
+            check_jam = TrafficJamChecker(debug=self.debug)
+            sequence.add_child(check_jam)
+        else:
+            sequence.add_child(Idle())
 
         return sequence
 

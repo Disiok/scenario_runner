@@ -1,9 +1,27 @@
 <?xml version="1.0"?>
 <scenarios>
-
-	<scenario name="ProactiveMergeScenario_1" type="ProactiveMergeScenario" town="Town03">
-        <ego_vehicle x="53" y="128.1" z="1" yaw="178" model="vehicle.lincoln.mkz2017" />
-        <other_actor random_location="True" autopilot="True" model="vehicle.*" amount="50" />
-        <!-- <other_actor x="6" y="171" z="1" yaw="-90" model="vehicle.tesla.model3" /> -->
+	<scenario name="ProactiveMergeScenario_1" type="ProactiveMergeScenario" town="Town04">
+		<ego_vehicle x="404.1000061035156" y="-16.0" z="1.0" yaw="-80.0" model="vehicle.lincoln.mkz2017"/>
+        <other_actor x="408.1000061035156" y="-14.0" z="1.0" yaw="-80.0" random_location="False" autopilot="False" model="vehicle.*" amount="1" />
 	</scenario>
+    <scenario name="ProactiveMergeScenario_2" type="ProactiveMergeScenario" town="Town03">
+        <ego_vehicle x="53" y="130.1" z="1" yaw="178" model="vehicle.lincoln.mkz2017" />
+        <other_actor x="6" y="161" z="1" yaw="-90" amount="1" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="6" y="171" z="1" yaw="-90" amount="1" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="6" y="181" z="1" yaw="-90" amount="1" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="6" y="191" z="1" yaw="-90" amount="1" autopilot="True" model="vehicle.tesla.model3" />
+    </scenario>
+    <scenario name="ProactiveMergeScenario_3" type="ProactiveMergeScenario" town="Town03">
+        <ego_vehicle x="-74.32" y="-120" z="0.5" yaw="270" model="vehicle.lincoln.mkz2017" />
+        <!-- <other_actor x="-145" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-135" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-125" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" /> -->
+        <!-- <other_actor x="-115" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" /> -->
+        <other_actor x="-105" y="-137" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <!-- <other_actor x="-95" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-85" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-75" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-65" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" />
+        <other_actor x="-55" y="-136" z="0.5" yaw="0" autopilot="True" model="vehicle.tesla.model3" /> -->
+    </scenario>
 </scenarios>

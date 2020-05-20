@@ -869,6 +869,12 @@ class TrafficJamChecker(AtomicBehavior):
         list_actors_to_destroy = []
         for actor_id, actor in CarlaActorPool.get_actors():
             if actor.attributes['role_name'] == 'autopilot':
+                if actor_id not in self.table_blocked_actors:
+                    self.table_blocked_actors[actor_id] = {
+                        'location': actor.get_location(),
+                        'time': current_game_time,
+                    }
+
                 block_info = self.table_blocked_actors[actor_id]
                 current_location = actor.get_location()
                 distance = current_location.distance(block_info['location'])

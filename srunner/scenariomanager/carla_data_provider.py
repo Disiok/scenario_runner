@@ -546,7 +546,11 @@ class CarlaActorPool(object):
         if responses:
             for response in responses:
                 if not response.error:
+                    print(f'[INFO][Spawn] Successfully spawned actor {response.actor_id}')
                     actor_ids.append(response.actor_id)
+                else:
+                    print(f'[INFO][Spawn]{response.error}')
+
 
         carla_actors = CarlaActorPool._world.get_actors(actor_ids)
         for actor in carla_actors:

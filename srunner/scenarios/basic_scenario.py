@@ -45,7 +45,10 @@ class BasicScenario(object):
         self.terminate_on_failure = terminate_on_failure
 
         # Initializing adversarial actors
-        self._initialize_actors(config)
+        new_actors = self._initialize_actors(config)
+        for new_actor in new_actors:
+            self.other_actors.append(new_actor)
+
         if world.get_settings().synchronous_mode:
             CarlaDataProvider.perform_carla_tick()
         else:
@@ -82,9 +85,8 @@ class BasicScenario(object):
         new_actors = CarlaActorPool.request_new_actors(config.other_actors)
         if new_actors is None:
             raise Exception("Error: Unable to add actors")
-
-        for new_actor in new_actors:
-            self.other_actors.append(new_actor)
+    
+        return new_actors
 
     def _setup_scenario_trigger(self, config):
         """

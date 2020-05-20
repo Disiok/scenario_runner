@@ -219,9 +219,11 @@ class ScenarioManager(object):
                     timestamp = snapshot.timestamp
             if timestamp:
                 self._tick_scenario(timestamp)
+        print('No longer running')
 
         self._watchdog.stop()
 
+        print("Cleaning up")
         self.cleanup()
 
         self.end_system_time = time.time()
@@ -263,6 +265,16 @@ class ScenarioManager(object):
 
             # Tick scenario
             self.scenario_tree.tick_once()
+            if self._debug_mode: 
+                print('Finished scenario tree tick')
+
+            # Spawn actors
+            new_actors = self.scenario_class.tick(timestamp)
+            if new_actors:
+                self.other_actors.extend(new_actors)
+                CarlaDataProvider.register_actors(new_actors)
+            if self._debug_mode:
+                print('Finished spawning actors')
 
             if self._debug_mode:
                 print("\n")

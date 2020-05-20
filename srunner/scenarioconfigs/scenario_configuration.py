@@ -46,18 +46,9 @@ class ActorConfiguration(ActorConfigurationData):
         pos_y = float(node.attrib.get('y', 0))
         pos_z = float(node.attrib.get('z', 0))
         yaw = float(node.attrib.get('yaw', 0))
-
-        random_location = False
-        if 'random_location' in node.keys():
-            random_location = True
-
-        autopilot = False
-        if 'autopilot' in node.keys():
-            autopilot = True
-
-        amount = 1
-        if 'amount' in node.keys():
-            amount = int(node.attrib['amount'])
+        random_location = node.attrib.get('random_location', 'False') == 'True'
+        autopilot = node.attrib.get('autopilot', 'False') == 'True'
+        amount = int(node.attrib.get('amount', '1'))
 
         super(ActorConfiguration, self).__init__(node.attrib.get('model', 'vehicle.*'),
                                                  carla.Transform(carla.Location(x=pos_x, y=pos_y, z=pos_z),

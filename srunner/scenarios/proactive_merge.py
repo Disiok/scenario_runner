@@ -36,7 +36,26 @@ class ProactiveMergeScenario(BackgroundActivity):
           debug_mode,
           timeout=timeout,
           criteria_enable=criteria_enable,
-          name='ProactiveMergeScenario')
+          name='ProactiveMergeScenario',
+          check_traffic_jam=True)
+        
+        self.previous_spawn_tick = None
+        
+    def tick(self, timestamp):
+        if self.previous_spawn_tick == None:
+            self.previous_spawn_tick = timestamp
+        
+        if timestamp.frame_count - self.previous_spawn_tick.frame_count > 100:
+            print(f'Respawning actors at timestamp {timestamp}')
+            new_actors = self._initialize_actors(self.config)
+            self.previous_spawn_tick = timestamp
+        else:
+            new_actors = []
+
+        for actor in new_actors:
+            self.other_actors.append(actor)
+        
+        return new_actors
 
 
     # def _create_behavior(self):
