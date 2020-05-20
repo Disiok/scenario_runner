@@ -42,7 +42,6 @@ class ActorConfiguration(ActorConfigurationData):
     """
 
     def __init__(self, node, rolename):
-
         pos_x = float(node.attrib.get('x', 0))
         pos_y = float(node.attrib.get('y', 0))
         pos_z = float(node.attrib.get('z', 0))
@@ -64,7 +63,9 @@ class ActorConfiguration(ActorConfigurationData):
                                                  carla.Transform(carla.Location(x=pos_x, y=pos_y, z=pos_z),
                                                                  carla.Rotation(yaw=yaw)),
                                                  node.attrib.get('rolename', rolename),
-                                                 autopilot, random_location, amount)
+                                                 autopilot=autopilot, 
+                                                 random=random_location, 
+                                                 amount=amount)
 
 
 class WeatherConfiguration(object):
