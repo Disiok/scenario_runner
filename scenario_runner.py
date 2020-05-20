@@ -51,6 +51,7 @@ from srunner.scenarios.signalized_junction_right_turn import SignalizedJunctionR
 from srunner.scenarios.change_lane import ChangeLane
 from srunner.scenarios.cut_in import CutIn
 from srunner.scenarios.background_activity import BackgroundActivity
+from srunner.scenarios.proactive_merge import ProactiveMergeScenario
 # pylint: enable=unused-import
 from srunner.scenarios.open_scenario import OpenScenario
 from srunner.scenarios.route_scenario import RouteScenario

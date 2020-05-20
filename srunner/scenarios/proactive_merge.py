@@ -4,9 +4,10 @@ from __future__ import print_function
 import py_trees
 
 from srunner.scenarios.basic_scenario import BasicScenario
+from srunner.scenarios.background_activity import BackgroundActivity
 
 
-class ProactiveMergeScenario(BasicScenario):
+class ProactiveMergeScenario(BackgroundActivity):
     """
     Some documentation on ProactiveMergeScenario
     :param world is the CARLA world
@@ -22,27 +23,28 @@ class ProactiveMergeScenario(BasicScenario):
     # some parameters for the other vehicles
 
     def __init__(self, world, ego_vehicles, config, randomize=False, debug_mode=False, criteria_enable=True,
-                 timeout=60):
+                 timeout=60 * 35):
         """
         Initialize all parameters required for ProactiveMergeScenario
         """
 
         # Call constructor of BasicScenario
         super(ProactiveMergeScenario, self).__init__(
-          "ProactiveMergeScenario",
+          world,
           ego_vehicles,
           config,
-          world,
           debug_mode,
-          criteria_enable=criteria_enable)
+          timeout=timeout,
+          criteria_enable=criteria_enable,
+          name='ProactiveMergeScenario')
 
 
-    def _create_behavior(self):
-        """
-        Setup the behavior for ProactiveMergeScenario
-        """
+    # def _create_behavior(self):
+    #     """
+    #     Setup the behavior for ProactiveMergeScenario
+    #     """
 
-    def _create_test_criteria(self):
-        """
-        Setup the evaluation criteria for ProactiveMergeScenario
-        """
+    # def _create_test_criteria(self):
+    #     """
+    #     Setup the evaluation criteria for ProactiveMergeScenario
+    #     """

@@ -24,7 +24,7 @@ class BackgroundActivity(BasicScenario):
     This is a single ego vehicle scenario
     """
 
-    def __init__(self, world, ego_vehicles, config, randomize=False, debug_mode=False, timeout=35 * 60):
+    def __init__(self, world, ego_vehicles, config, randomize=False, debug_mode=False, timeout=35 * 60, criteria_enable=True, name=None):
         """
         Setup all relevant parameters and create scenario
         """
@@ -33,13 +33,13 @@ class BackgroundActivity(BasicScenario):
 
         self.timeout = timeout  # Timeout of scenario in seconds
 
-        super(BackgroundActivity, self).__init__("BackgroundActivity",
+        super(BackgroundActivity, self).__init__(name if name is not None else "BackgroundActivity",
                                                  ego_vehicles,
                                                  config,
                                                  world,
                                                  debug_mode,
                                                  terminate_on_failure=True,
-                                                 criteria_enable=True)
+                                                 criteria_enable=criteria_enable)
 
     def _initialize_actors(self, config):
         for actor in config.other_actors:
